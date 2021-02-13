@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript" src="js/vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+		<h1>{{msg}}</h1>	
+	<!-- 	<button type="button" @click="clickEvent"></button> -->
+		<h1 :class="className">类名绑定</h1>
+		</div>
+		<script type="text/javascript">
+			let app=new Vue({
+				el:"#app",
+				data:{
+					msg:"helloVue",
+					className:"redBg"
+				},
+				beforeCreate(){
+					console.log("beforeCreate")
+					//实例化内容
+					console.log(this)
+					// 此时数据和事件方法methods还未绑定
+					console.log(this.msg)
+					// 这阶段可以做ajax或者方法绑定
+					
+				},
+				created(){
+					console.log("create")
+					// 数据data和方法methods绑定到应用对象app上
+				},
+				beforeMount(){
+					console.log("beforeMount")
+					// 渲染前,根据数据生成的dom对象是获取不到
+					let dom=document.querySelector(".redBg");
+					console.log(dom)
+				},
+				mounted(){
+					console.log("mounted")
+					// 渲染后，可以拿到数据生成的dom对象
+				},
+				// methods:{
+				// 	clickEvent:function(){
+						
+				// 	},
+				// }
+				beforeUpdate(){
+					console.log('beforeUpate')
+					// 数据更改，但内容未更改之前
+				},
+				updated(){
+					console.log("update")
+					// 内容已更新完毕
+				},
+				beforeDestroy(){
+					// 应用销毁之前
+					console.log("beforeDestroy")
+				},
+				destroyed(){
+					// 应用销毁之后
+					console.log("Destroy")
+				}
+			}),
+			
+		</script>
+	</body>
+</html>

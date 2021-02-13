@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="js/vue.js" type="text/javascript" charset="UTF-8"></script>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			.page{
+				width: 100vw;
+				height: 100vh;
+				background-color: #efefef;
+				position: fixed;
+				left: 0;
+				top: 0;
+			}
+			.rMenu{
+				width: 50vw;
+				height:100vh;
+				position:fixed;
+				left:0;
+				top:0;
+				transform: translateX(70vw);
+				background-color: skyblue;
+				transition: transform 0.5s ;
+			}
+			/* .active{
+				transform: translateX(50vw);
+			} */
+			.slideRight-enter-active, .slideRight-leave-active{
+				transition: all .5s;
+			}
+			.slideRight-enter,.slideRight-leave-to{
+				transform: translateX(100vw);
+				opacity:0;
+			}
+		</style>
+		
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<div class="page">
+				首页
+				<button type="button" @click="toggleMenu()">切换侧边栏</button>
+			</div>
+			<transition name="slideRight">
+			<div class="rMenu" v-show="isShow">
+				侧边栏
+			</div>
+			</transition>
+			
+		</div>
+		
+	<script>
+		var app=new Vue({
+			el:"#app",
+			data:{
+				// isShow:false	
+				isShow:true
+			},
+			methods:{
+				toggleMenu:function(){
+					this.isShow=!this.isShow
+					}
+			}
+		})
+	</script>
+	<script src="js/vue.js" type="text/javascripts" charset="UTF-8"></script>
+	</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<p>{{username}}</p>
+			<h1>单行文本输入框</h1>
+			<!-- 数据双向绑定 -->
+			<input type="text" id="" v-model.lazy.trim="username" value="" />
+			<h1>多行文本输入框</h1>
+			<textarea rows="" cols="" v-model="username">
+			</textarea>
+			<h1>复选框</h1>
+			<span  v-for="item in fruits" >
+				{{item}}
+			<input type="checkbox" name="fruit" id="" value="" v-model="checkFruits" :value="item"/>
+			</span>
+			<h1>单选</h1>
+			<span  v-for="item in fruits" >
+				{{item}}
+			<input type="radio" name="fover_fruit" id="" value="" v-model="radioFruits" :value="item"/>
+			</span>
+			<h1>选项框</h1>
+			<select  v-model="chooseCity">
+				<option v-for="item in citys" :value="item">{{item}}</option>
+			</select>
+			<h2>{{chooseCity}}</h2>
+			<h1>选项框:多选</h1>
+			<select  v-model="morechooseCity" multiple="multiple">
+			<!-- iosbug解决方案 -->
+				<option disabled="disabled" value ="">请选择</option>
+				<option v-for="item in citys" :value="item">{{item}}</option>
+			</select>
+			<h2>{{morechooseCity}}</h2>
+			<h1>将字符串变为数字获取</h1>
+			<input type="text" name="age" v-model.number="age" value="" />
+		</div>
+		<script type="text/javascript">
+			let app=new Vue({
+				el:"#app",
+				data:{
+					username:"小明",
+					fruits:['苹果','雪梨','葡萄','香蕉','橘子'],
+					checkFruits:[],
+					radioFruits:[],
+					citys:['北京','上海','深圳'],
+					chooseCity:"",
+					morechooseCity:[],
+					age:16
+					
+				},
+				watch:{
+					age:function(e){
+						console.log(e)
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
